@@ -238,9 +238,9 @@ public class MapReduceInputFormatWrapper<K, V> extends org.apache.hadoop.mapredu
     }
 
     @Override
+    //Do not override key and value since it updates the container of new split with the old split's container as per the call (https://github.com/twitter/elephant-bird/blob/master/core/src/main/java/com/twitter/elephantbird/mapreduce/input/combine/CompositeRecordReader.java#L134)  
     public void setKeyValue(K key, V value) {
-      keyObj = key;
-      valueObj = value;
+    // Lets use the new container for the new split 
     }
   }
 
